@@ -31,13 +31,11 @@ public class Program
         Console.WriteLine($"{sym} moves to {space+1}!");
         Console.WriteLine();
         return sym;
-
     }
     public static void Main()
     {
         Console.WriteLine("Welcome to tic-tac-toe!"); //"Instructions for the user"
-        Console.WriteLine("You will now be able to put first 'X', then 'O' in spaces from 1 to 9 counting from the left, " +
-            "upper place");
+        Console.WriteLine("You will now be able to put first 'X', then 'O' in spaces from 1 to 9 counting from the left, upper place");
         Console.WriteLine("Let's begin!");
         string[] boxes = Boxes();
         Board(boxes);
@@ -75,8 +73,7 @@ public class Program
             }
             if (change) Board(boxes); //"Updating the board"
         }
-        while (boxes[0] == " " || boxes[1] == " " || boxes[2] == " " || boxes[3] == " " || boxes[4] == " " || 
-        boxes[5] == " " || boxes[6] == " " || boxes[7] == " " || boxes[8] == " ");
+        while (boxes[0] == " " || boxes[1] == " " || boxes[2] == " " || boxes[3] == " " || boxes[4] == " " || boxes[5] == " " || boxes[6] == " " || boxes[7] == " " || boxes[8] == " ");
         Console.WriteLine("Game over!"); //"The game ends"
     }
 }
