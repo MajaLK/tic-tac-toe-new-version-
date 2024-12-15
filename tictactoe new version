@@ -1,0 +1,82 @@
+public class Program
+{
+    public static string[] Boxes()
+    {
+        string[] boxes = new string[9]; //"Creating array for spaces, in which the user will put a symbol later
+        for (int i = 0; i < boxes.Length; i++) boxes[i] = " ";
+        return boxes;
+    }
+    public static void Board(string[] boxes)
+    {
+        Console.WriteLine($" {boxes[0]} | {boxes[1]} | {boxes[2]}"); //"Creating rows and collums for the board."
+        Console.WriteLine("---+---+---");
+        Console.WriteLine($" {boxes[3]} | {boxes[4]} | {boxes[5]}");
+        Console.WriteLine("---+---+---");
+        Console.WriteLine($" {boxes[6]} | {boxes[7]} | {boxes[8]}");
+        Console.WriteLine();
+    }
+    public static bool Check(int space, string[] boxes)
+    {
+        if (boxes[space] != " ")
+        {
+            Console.WriteLine("Illegal move! Please remember that you cannot use the same space again!");
+            return false;
+        }
+        return true;
+    }
+    public static string FillingSpaces(int space, string sym)
+    {
+        string[] boxes = Boxes();
+        boxes[space] = sym;
+        Console.WriteLine($"{sym} moves to {space+1}!");
+        Console.WriteLine();
+        return sym;
+
+    }
+    public static void Main()
+    {
+        Console.WriteLine("Welcome to tic-tac-toe!"); //"Instructions for the user"
+        Console.WriteLine("You will now be able to put first 'X', then 'O' in spaces from 1 to 9 counting from the left, " +
+            "upper place");
+        Console.WriteLine("Let's begin!");
+        string[] boxes = Boxes();
+        Board(boxes);
+        string sym = "O";
+        bool change = true; //"Creating variable that will ensure that the symbol won't change in case user uses illegal move"
+        do
+        {
+            if (sym == "O" && change) sym = "X";
+            else if (sym == "X" && change) sym = "O";
+            Console.WriteLine();
+            Console.WriteLine("Please choose a number from 1 to 9"); //"Beginning the game"
+            bool read = int.TryParse(Console.ReadLine(), out int place);
+            switch (place)
+            {
+                case 1:
+                case 2:
+                case 3:
+                case 4:
+                case 5:
+                case 6:
+                case 7:
+                case 8:
+                case 9:
+                    if (Check(place - 1, boxes))
+                    {
+                        boxes[place - 1] = FillingSpaces(0, sym);
+                        change = true;
+                    }
+                    else change = false;
+                    break;
+               default:
+                    Console.WriteLine("Illegal move! Please remember that you can only choose numbers between 1 and 9!");
+                    change = false;
+                    break;
+            }
+            if (change) Board(boxes); //"Updating the board"
+        }
+        while (boxes[0] == " " || boxes[1] == " " || boxes[2] == " " || boxes[3] == " " || boxes[4] == " " || 
+        boxes[5] == " " || boxes[6] == " " || boxes[7] == " " || boxes[8] == " ");
+        Console.WriteLine("Game over!"); //"The game ends"
+    }
+}
