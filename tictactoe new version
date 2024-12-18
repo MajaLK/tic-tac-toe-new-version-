@@ -62,7 +62,7 @@ public class Program
                 case 9:
                     if (Check(place - 1, boxes))
                     {
-                        boxes[place - 1] = FillingSpaces(0, sym);
+                        boxes[place - 1] = FillingSpaces(place - 1, sym);
                         change = true;
                     }
                     else change = false;
